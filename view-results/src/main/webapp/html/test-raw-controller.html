@@ -1,0 +1,35 @@
+<div ng-Loader="tablePromise">
+	<div class="search row">
+	  <div class="col-md-8">
+		  <input type="text" class="form-control" ng-model="search">
+		  <i class="fa fa-search"></i>
+	  </div>
+	  <div class="col-md-4"></div>
+	</div>
+	<div class="row">
+		<div class="col-md-12" infinite-scroll='loadMore()'>
+		 	<table class="table table-striped">
+		 	  <thead>
+					<th ng-repeat="k in keys" ng-click="clickSort(k)" ng-sortable="ng-sortable" class="pointer">{{k}}</th>
+		 	  </thead>
+		 	  <tbody>
+		 	  	<tr ng-repeat="row in rows | filter:search | orderBy:sortBy:sortReverse | limitTo: limitRowsTo">
+			 	  	<td ng-repeat="k in keys" ng-switch="k" ng-init="value = row[k]">
+				 	  	<span ng-switch-when="status" ng-switch="isSuite">
+				 	  		<status row="row" suite ng-switch-when="true"></status>
+				 	  		<status row="row" ng-switch-default></status>
+				 	  	</span>
+				 	  	<span ng-switch-when="execution_date">
+				 	  		<format-date date="value"></format-date>
+				 	  	</span>
+				 	  	<span ng-switch-when="test_name">
+				 	  		<span ng-test-name name="value"></span>	
+				 	  	</span>
+				 	  	<span ng-switch-default>{{value}}</span>
+			 	  	</td>
+		 	  	</tr>
+		 	  </tbody>
+		 	</table>
+		</div>
+	</div>
+</div>

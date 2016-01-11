@@ -1,0 +1,32 @@
+<div id="single-test-view" ng-cloak ng-Loader="testPromise">
+	<div class="row">
+		<div class="col-md-12">
+			<a href="" ng-click="goBack()" class="btn btn-primary close-btn">Close</a>
+			<h1>{{ testName }}</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 props-wrap">
+		<table class="table table-striped">
+	 	  <thead>
+		 	  	<th>Key</th>
+		 	  	<th>Value</th>
+	 	  </thead>
+	 	  <tbody>
+	 	  	<tr ng-repeat="(k,v) in test" ng-switch="k">
+	 	  		<td>{{k}}</td>
+		 	  		<td ng-switch-when="execution_date">
+							{{formatDate(v)}}
+		 	  		</td>
+		 	  		<td ng-switch-default>
+							{{v}}
+		 	  		</td>
+	 	  	</tr>
+	 	  </tbody>
+	 	</table>
+		</div>
+		<div class="col-md-6 textbox-wrap">
+			<textarea ng-model="stacktrace" cols=80 rows=12 wrap='off'></textarea>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,45 @@
+<div id="single-suite-view" ng-cloak>
+	<div class="row">
+		<div class="col-md-12">
+			<a href="" ng-click="goBack()" class="btn btn-primary close-btn">Close</a>
+			<h1>{{ suite.test_name }}</h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-md-6 props-wrap" ng-Loader="suitePromise">
+		<table class="table table-striped">
+	 	  <thead>
+		 	  	<th>Key</th>
+		 	  	<th>Value</th>
+	 	  </thead>
+	 	  <tbody>
+	 	  	<tr ng-repeat="(k,v) in suite" ng-switch="k">
+	 	  		<td>{{k}}</td>
+		 	  		<td ng-switch-when="execution_date">
+							{{formatDate(v)}}
+		 	  		</td>
+		 	  		<td ng-switch-default>
+							{{v}}
+		 	  		</td>
+	 	  	</tr>
+	 	  </tbody>
+	 	</table>
+		</div>
+		<div class="col-md-6" ng-Loader="testRunsPromise">
+		 	<table class="table table-striped">
+		 	  <thead>
+					<th>Status</th>
+					<th>Test Name</th>
+		 	  </thead>
+		 	  <tbody>
+		 	  	<tr ng-repeat="row in rows">
+		 	  	<td>
+		 	  		<status row="row"></status>
+		 	  	</td>
+		 	  	<td>{{ row.test_name}}</td>
+		 	  	</tr>
+		 	  </tbody>
+		 	</table>
+		</div>
+	</div>
+</div>

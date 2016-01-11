@@ -1,0 +1,12 @@
+<a  ng-href="{{ getHref(row) }}"
+		data-toggle="popover" 
+		title="{{ row.user }}" 
+		data-content="{{ row.execution_date }}">
+
+	<span ng-switch="row.status">
+		<i class="fa fa-check-circle" ng-switch-when="success"></i>
+		<i class="fa fa-times-circle" ng-switch-when="failure"></i>
+		<i class="fa fa-exclamation-circle" ng-switch-when="error"></i>
+		<i class="fa fa-question-circle" ng-switch-default></i>
+	</span>	
+</a>

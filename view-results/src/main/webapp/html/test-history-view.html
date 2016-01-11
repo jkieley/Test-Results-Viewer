@@ -1,0 +1,31 @@
+<div id="table-view" ng-loader="tablePromise">
+	<div class="search row">
+	  <div class="col-md-8">
+		  <input type="text" class="form-control" ng-model="search" ng-model-options="{ debounce: 200 }">
+		  <i class="fa fa-search"></i>
+	  </div>
+	  <div class="col-md-4"></div>
+	</div>
+	<div class="row">
+		<div class="col-md-12" infinite-scroll='loadMore()'>
+		 	<table id="runs-table" class="table table-striped">
+		 	  <thead>
+	 	 	  	<th ng-sortable ng-click="sortClick($event, 'test_name')">Test Name</th>
+	 	 	  	<th ng-sortable ng-click="sortClick($event, 'order_num')">Most Recent Test Run</th>
+	 	 	  	<th ng-sortable ng-click="sortClick($event, 'run_count')">Test Run History</th>
+		 	  </thead>
+		 	  <tbody>
+		 	  	<tr ng-repeat="row in rows" ng-init="runs = getRuns(row)">
+		 	  		<td ng-test-name name="row.test_name"></td>
+		 	  		<td>
+								<status row="runs[0]"></status>
+		 	  		</td>
+		 	  		<td>
+			 	  		<status ng-repeat="run in runs" row="run"></status>
+		 	  		</td>
+		 	  	</tr>
+		 	  </tbody>
+		 	</table>
+		</div>
+	</div>
+</div>
